@@ -40,7 +40,6 @@ services:
         source: ./logstash/pipeline
         target: /usr/share/logstash/pipeline
         read_only: true
-      - ./output/:./output  
     ports:
       - "5000:5000/tcp"
       - "5000:5000/udp"
