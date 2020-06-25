@@ -1,0 +1,26 @@
+apm-server:
+  host: "localhost:8200"
+  rum:
+    enabled: true
+
+fields: {project: "compuletra.Uaa"}
+
+queue.mem.events: 4096
+
+max_procs: 4
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  indices:
+    - index: "%{[processor.event]}"
+      mappings:
+        sourcemap:    "apm-sourcemap"
+        error:        "apm-error"
+        transaction:  "apm-transaction"
+        span:         "apm-span"
+        metric:       "apm-metric"
+        onboarding:   "apm-onboarding"
+      default:        "apm"
+  username: "elastic"
+  password: "changeme"
+

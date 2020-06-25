@@ -1,4 +1,4 @@
-version: '3.2'
+version: '3.7'
 
 services:
   elasticsearch:
@@ -69,9 +69,31 @@ services:
     depends_on:
       - elasticsearch
 
+  apm:
+    build:
+      context:
+        apm/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      # - type: bind
+      #   source: ./apm/config/apm-server.yml
+      #   target: /usr/share/apm-server/apm-server.yml
+      #   read_only: true
+      - type: volume
+        source: apm-server
+        target: /usr/share/apm-server/data
+    ports:
+      - "8200:8200"         
+    networks: 
+      - elk
+    depends_on:
+      - elasticsearch
+
 networks:
   elk:
     driver: bridge
 
 volumes:
   elasticsearch:
+  apm-server:
