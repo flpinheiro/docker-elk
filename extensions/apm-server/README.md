@@ -9,7 +9,13 @@ To include APM Server in the stack, run Docker Compose from the root of the repo
 argument referencing the `apm-server-compose.yml` file:
 
 ```console
-$ docker-compose -f docker-compose.yml -f extensions/apm-server/apm-server-compose.yml up -d --build --remove-orphans
+docker-compose -f docker-compose.yml -f extensions/apm-server/apm-server-compose.yml up -d --build --remove-orphans
+```
+
+for restart docker
+
+```shell
+docker-compose -f docker-compose.yml -f extensions/apm-server/apm-server-compose.yml down --remove-orphans -v
 ```
 
 Meanwhile, you can navigate to the **APM** application in Kibana and follow the setup instructions to get started.
